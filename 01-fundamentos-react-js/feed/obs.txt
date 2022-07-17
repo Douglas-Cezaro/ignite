@@ -1,0 +1,18 @@
+# Programação imperativa:
+
+O que deve ser feito (passo-a-passo).
+
+
+# Programação declarativa:
+
+Quais as condições para eu ter o resultado final.
+
+# Imutabilidades
+As variaves não sofrem mutação, nós criamos um novo valor (um novo espaço na memória).
+
+
+closures utilizado para acessar valores mais recentes do react
+
+ setLikeCount((state)=>{
+    return state + 1
+ });
