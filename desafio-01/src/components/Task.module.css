@@ -1,0 +1,66 @@
+.task {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+}
+
+.task > header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.concludedTask {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.concludedTask > strong {
+  color: var(--purple);
+  font-size: 0.875rem;
+}
+
+.createdTask {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.createdTask > strong {
+  color: var(--blue);
+  font-size: 0.875rem;
+}
+
+.counter {
+  height: 1.75rem;
+  width: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-400);
+  border-radius: 20px;
+}
+
+.task > main {
+}
+
+.contentIsEmpty {
+  width: 100%;
+  height: 15.25rem;
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
+  color: var(--gray-300);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
