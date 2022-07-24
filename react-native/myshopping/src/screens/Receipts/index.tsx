@@ -1,32 +1,97 @@
-import React from "react";
-import { FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Alert, FlatList, Text, View } from "react-native";
+import storage from "@react-native-firebase/storage";
 
 import { Container, PhotoInfo } from "./styles";
 import { Header } from "../../components/Header";
 import { Photo } from "../../components/Photo";
-import { File } from "../../components/File";
+import { File, FileProps } from "../../components/File";
 
 import { photosData } from "../../utils/photo.data";
+import theme from "../../theme";
 
 export function Receipts() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [photos, setPhotos] = useState<FileProps[]>([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    storage()
+      .ref("images")
+      .list()
+      .then((result) => {
+        setIsLoading(false);
+        const files: FileProps[] = [];
+
+        result.items.forEach((file) => {
+          files.push({
+            name: file.name,
+            path: file.fullPath,
+          });
+        });
+        setPhotos(files);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(err);
+        Alert.alert("Comprovantes", "Erro ao buscar arquivos.");
+      });
+  }, []);
+
   return (
     <Container>
       <Header title="Comprovantes" />
 
-      <Photo uri="" />
+      {isLoading ? (
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ActivityIndicator color={theme.COLORS.PURPLE} size="large" />
+        </View>
+      ) : (
+        <>
+          <Photo uri="" />
 
-      <PhotoInfo>Informações da foto</PhotoInfo>
+          <PhotoInfo>Informações da foto</PhotoInfo>
 
-      <FlatList
-        data={photosData}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => (
-          <File data={item} onShow={() => {}} onDelete={() => {}} />
-        )}
-        contentContainerStyle={{ paddingBottom: 20 }}
-        showsVerticalScrollIndicator={false}
-        style={{ width: "100%", padding: 24 }}
-      />
+          <FlatList
+            data={photos}
+            keyExtractor={(item) => item.name}
+            renderItem={({ item }) => (
+              <File data={item} onShow={() => {}} onDelete={() => {}} />
+            )}
+            contentContainerStyle={{ paddingBottom: 20 }}
+            showsVerticalScrollIndicator={false}
+            style={{ width: "100%", padding: 24 }}
+            ListEmptyComponent={() => {
+              return (
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      color: theme.COLORS.PURPLE,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Nenhum comprovante encontrado!
+                  </Text>
+                </View>
+              );
+            }}
+          />
+        </>
+      )}
     </Container>
   );
 }
