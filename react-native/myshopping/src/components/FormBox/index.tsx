@@ -13,10 +13,15 @@ export function FormBox() {
   async function handleProductAdd() {
     firestore()
       .collection("products")
+      // .doc("id-custom")
+      // .set({
+
+      // })
       .add({
         description,
         quantity,
         done: false,
+        createAt: firestore.FieldValue.serverTimestamp,
       })
       .then(() => {
         setDescription("");
