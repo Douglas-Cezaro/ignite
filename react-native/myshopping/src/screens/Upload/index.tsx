@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import storage from "@react-native-firebase/storage";
 
@@ -7,12 +8,25 @@ import { Header } from "../../components/Header";
 import { Photo } from "../../components/Photo";
 
 import { Container, Content, Progress, Transferred } from "./styles";
-import { ActivityIndicator, Alert } from "react-native";
-import theme from "../../theme";
 
 export function Upload() {
-  const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState("");
+  const [bytesTransferred, setBytesTransferred] = useState("");
+  const [progress, setProgress] = useState("0");
+
+  const validate = () => {
+    if (image) {
+      return Number(progress) < 100 && Number(progress) > 0;
+    }
+    return !image;
+  };
+
+  const validatePhoto = () => {
+    if (image) {
+      return Number(progress) < 100 && Number(progress) > 0;
+    }
+    return false;
+  };
 
   async function handlePickImage() {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -31,21 +45,33 @@ export function Upload() {
   }
 
   async function handleUpload() {
-    setIsLoading(true);
     const fileName = new Date().getTime();
     const reference = storage().ref(`/images/${fileName}.png`);
-    reference
-      .putFile(image)
-      .then(() => {
-        setIsLoading(false);
-        setImage("");
-        Alert.alert("Upload", "Upload concluído!");
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.error(error);
-        Alert.alert("Upload", "Erro ao fazer upload imagem!");
-      });
+
+    const uploadTask = reference.putFile(image);
+
+    uploadTask.on("state_changed", (taskSnapshot) => {
+      const percent = (
+        (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
+        100
+      ).toFixed(0);
+      setProgress(percent);
+      setBytesTransferred(
+        `${taskSnapshot.bytesTransferred} transferidos de ${taskSnapshot.totalBytes}`
+      );
+    });
+
+    uploadTask.then(() => {
+      setImage("");
+      setProgress("0");
+      setBytesTransferred("");
+      Alert.alert("Upload", "Upload com sucesso!");
+    });
+
+    uploadTask.catch((error) => {
+      console.error(error);
+      Alert.alert("Upload", "Erro ao fazer upload imagem!");
+    });
   }
 
   return (
@@ -53,20 +79,18 @@ export function Upload() {
       <Header title="Lista de compras" />
 
       <Content>
-        {isLoading ? (
-          <ActivityIndicator color={theme.COLORS.PURPLE} size="large" />
-        ) : (
-          <>
-            <Photo uri={image} onPress={handlePickImage} />
-            <Button
-              title="Fazer upload"
-              onPress={handleUpload}
-              disabled={!image}
-            />
-            <Progress>0%</Progress>
-            <Transferred>0 de 100 bytes transferido</Transferred>
-          </>
-        )}
+        <Photo
+          uri={image}
+          onPress={handlePickImage}
+          disabled={validatePhoto()}
+        />
+        <Button
+          title="Fazer upload"
+          onPress={handleUpload}
+          disabled={validate()}
+        />
+        <Progress>{progress}%</Progress>
+        <Transferred>{bytesTransferred}</Transferred>
       </Content>
     </Container>
   );
