@@ -62,10 +62,12 @@ export function Upload() {
       );
     });
 
-    uploadTask.then(() => {
+    uploadTask.then(async () => {
       setImage("");
       setProgress("0");
       setBytesTransferred("");
+      const imageUrl = reference.getDownloadURL();
+      console.log(imageUrl);
       Alert.alert("Upload", "Upload com sucesso!");
     });
 
