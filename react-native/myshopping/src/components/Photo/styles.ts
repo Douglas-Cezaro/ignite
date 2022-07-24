@@ -1,15 +1,15 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   width: 270px;
-  height: 270px;
+  height: 150px;
   margin-top: 32px;
   margin-bottom: 12px;
 `;
 
 export const EmptyPhotoContainer = styled.View`
-  width: 270px;
-  height: 270px;
+  width: 100%;
+  height: 100%;
   border-width: 3px;
   border-radius: 5px;
   border-color: ${({ theme }) => theme.COLORS.GRAY50};
@@ -32,3 +32,4 @@ export const EmptyPhotoText = styled.Text`
   padding-top: 18px;
   padding-bottom: 18px;
 `;
+
