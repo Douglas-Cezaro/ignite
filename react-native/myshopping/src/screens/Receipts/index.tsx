@@ -24,7 +24,23 @@ export function Receipts() {
     setPhotoInfo(`Upload realizado em ${date.toDateString()}`);
   }
 
-  useEffect(() => {
+  async function handleDeleteImage(path: string) {
+    storage()
+      .ref(path)
+      .delete()
+      .then(() => {
+        fetchImage();
+        Alert.alert("Comprovantes", "Imagem excluída com sucesso!");
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert("Comprovantes", "Erro ao deletar imagem!");
+      });
+  }
+
+  async function fetchImage() {
+    setPhotoSelected("");
+    setPhotoInfo("");
     setIsLoading(true);
     storage()
       .ref("images")
@@ -46,6 +62,9 @@ export function Receipts() {
         console.log(err);
         Alert.alert("Comprovantes", "Erro ao buscar arquivos.");
       });
+  }
+  useEffect(() => {
+    fetchImage();
   }, []);
 
   return (
@@ -76,7 +95,7 @@ export function Receipts() {
               <File
                 data={item}
                 onShow={() => handleShowImage(item.path)}
-                onDelete={() => {}}
+                onDelete={() => handleDeleteImage(item.path)}
               />
             )}
             contentContainerStyle={{ paddingBottom: 20 }}
