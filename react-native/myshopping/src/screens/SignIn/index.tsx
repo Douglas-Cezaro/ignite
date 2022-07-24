@@ -21,8 +21,21 @@ export function SignIn() {
       .then(() => {
         Alert.alert("Login", "Usuário criado com sucesso!");
       })
-      .catch(() => {
-        Alert.alert("Login", "Erro ao criar usuário!");
+      .catch((error) => {
+        if (error.code === "auth/email-already-in-use") {
+          return Alert.alert(
+            "Login",
+            "E-mail não disponivel. Escolhe outro e-mail para cadastrar!"
+          );
+        }
+        if (error.code === "auth/invalid-email") {
+          return Alert.alert("Login", "E-mail inválido");
+        }
+        if (error.code === "auth/weak-password") {
+          return Alert.alert("Login", "A senha deve ter no mínimo 6 dígitos.");
+        }
+
+        return Alert.alert("Login", "Erro ao cadastrar usuário!");
       });
   }
 
