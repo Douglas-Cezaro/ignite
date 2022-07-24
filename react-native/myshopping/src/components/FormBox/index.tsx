@@ -21,7 +21,7 @@ export function FormBox() {
         description,
         quantity,
         done: false,
-        createAt: firestore.FieldValue.serverTimestamp,
+        createAt: firestore.FieldValue.serverTimestamp(),
       })
       .then(() => {
         setDescription("");
