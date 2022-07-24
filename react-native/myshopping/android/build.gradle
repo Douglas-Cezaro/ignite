@@ -3,9 +3,9 @@
 buildscript {
     ext {
         buildToolsVersion = "29.0.3"
-        minSdkVersion = 21
-        compileSdkVersion = 30
-        targetSdkVersion = 30
+        minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '21')
+        compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '31')
+        targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '31')
     }
     repositories {
         google()
