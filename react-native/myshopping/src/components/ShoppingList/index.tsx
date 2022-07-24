@@ -14,11 +14,10 @@ export function ShoppingList() {
 
   useEffect(() => {
     setIsLoading(true);
-    firestore()
+    const subscribe = firestore()
       .collection("products")
-      .get()
-      .then((response) => {
-        const data = response.docs.map((doc) => {
+      .onSnapshot((querySnapshot) => {
+        const data = querySnapshot.docs.map((doc) => {
           return {
             id: doc.id,
             ...doc.data(),
@@ -26,12 +25,9 @@ export function ShoppingList() {
         }) as ProductProps[];
         setProducts(data);
         setIsLoading(false);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.error(error);
-        Alert.alert("Produtos", "Erro ao buscar produtos");
       });
+
+    return () => subscribe();
   }, []);
 
   if (isLoading) {
