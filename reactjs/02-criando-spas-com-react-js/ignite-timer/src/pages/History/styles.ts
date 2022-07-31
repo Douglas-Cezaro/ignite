@@ -99,3 +99,8 @@ export const Status = styled.span<StatusProps>`
     background: ${(props) => props.theme[STATUS_COLORS[props.statusColor]]};
   }
 `
+
+export const TdEmptyValues = styled.td`
+  text-align: center;
+  vertical-align: middle;
+`
