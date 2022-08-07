@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   Alert,
   FlatList,
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -26,7 +27,9 @@ export function Home() {
       );
     }
 
-    setParticipants([...participants, name]);
+    setParticipants((prevState) => [...prevState, name]);
+    setName("");
+    Keyboard.dismiss();
   }
 
   function handleParticipantRemove(name: string) {
