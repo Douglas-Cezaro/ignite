@@ -1,16 +1,28 @@
 import {
-  Keyboard,
-  KeyboardAvoidingView,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { Participant } from "../../components/Participant";
 import { styles } from "./styles";
 
 export function Home() {
+  const participants = [
+    "Rodrigo",
+    "Vini",
+    "Diego",
+    "Biro",
+    "Ana",
+    "Isa",
+    "Dora",
+    "Allane",
+    "Tadeu",
+    "Tutu",
+    "Kielson",
+  ];
+
   function handleParticipantAdd() {
     console.log("Você clicou no botão de Adicionar!");
   }
@@ -21,36 +33,28 @@ export function Home() {
 
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView behavior="position" enabled>
-          <>
-            <Text style={styles.eventName}>Nome do evento</Text>
-            <Text style={styles.eventDate}>Sexta, 4 de Novembro de 2022.</Text>
-            <View style={styles.form}>
-              <TextInput
-                style={styles.input}
-                keyboardAppearance="dark"
-                placeholder="Nome do participante"
-                placeholderTextColor="#6b6b6b"
-              />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={handleParticipantAdd}
-              >
-                <Text style={styles.buttonText}>+</Text>
-              </TouchableOpacity>
-            </View>
-            <Participant
-              name="Douglas"
-              onRemove={() => handleParticipantRemove("Douglas")}
-            />
-            <Participant
-              name="Cezaro"
-              onRemove={() => handleParticipantRemove("Cezaro")}
-            />
-          </>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
+      <Text style={styles.eventName}>Nome do evento</Text>
+      <Text style={styles.eventDate}>Sexta, 4 de Novembro de 2022.</Text>
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          keyboardAppearance="dark"
+          placeholder="Nome do participante"
+          placeholderTextColor="#6b6b6b"
+        />
+        <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableOpacity>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {participants.map((participant: string, index: number) => (
+          <Participant
+            key={index}
+            name={participant}
+            onRemove={() => handleParticipantRemove(participant)}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 }
