@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Alert,
   FlatList,
@@ -11,25 +12,21 @@ import { Participant } from "../../components/Participant";
 import { styles } from "./styles";
 
 export function Home() {
-  const participants = [
-    "Rodrigo",
-    "Vini",
-    "Diego",
-    "Biro",
-    "Ana",
-    "Isa",
-    "Jack",
-    "Mayk",
-    "João",
-  ];
+  const [name, setName] = useState("");
+  const [participants, setParticipants] = useState(["João"]);
 
   function handleParticipantAdd() {
-    if (participants.includes("Rodrigo")) {
+    if (name.trim().length <= 0) {
+      return Alert.alert("Atenção", "O campo nome é obrigatório!");
+    }
+    if (participants.includes(name)) {
       return Alert.alert(
         "Participante existe",
         "Já existe um participante na lista com esse nome."
       );
     }
+
+    setParticipants([...participants, name]);
   }
 
   function handleParticipantRemove(name: string) {
@@ -56,6 +53,8 @@ export function Home() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
+          onChangeText={setName}
+          value={name}
         />
 
         <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
