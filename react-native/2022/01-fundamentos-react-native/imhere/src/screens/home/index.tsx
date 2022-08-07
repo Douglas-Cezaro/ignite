@@ -14,6 +14,11 @@ export function Home() {
   function handleParticipantAdd() {
     console.log("Você clicou no botão de Adicionar!");
   }
+
+  function handleParticipantRemove(name: string) {
+    console.log(`Você clicou no botão de Remover o ${name}`);
+  }
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -35,8 +40,14 @@ export function Home() {
                 <Text style={styles.buttonText}>+</Text>
               </TouchableOpacity>
             </View>
-            <Participant name="Douglas" />
-            <Participant name="Cezaro" />
+            <Participant
+              name="Douglas"
+              onRemove={() => handleParticipantRemove("Douglas")}
+            />
+            <Participant
+              name="Cezaro"
+              onRemove={() => handleParticipantRemove("Cezaro")}
+            />
           </>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
