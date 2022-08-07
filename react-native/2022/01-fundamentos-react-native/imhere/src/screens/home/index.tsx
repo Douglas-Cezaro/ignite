@@ -35,8 +35,8 @@ export function Home() {
                 <Text style={styles.buttonText}>+</Text>
               </TouchableOpacity>
             </View>
-            <Participant />
-            <Participant />
+            <Participant name="Douglas" />
+            <Participant name="Cezaro" />
           </>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
