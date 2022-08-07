@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import Home from "./src/screens/home";
+import { Home } from "./src/screens/home";
 
 export default function App() {
   return (
