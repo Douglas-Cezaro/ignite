@@ -1,0 +1,3 @@
+// Iniciar o json-server com base em um arquivo passando 
+// a porta e fazendo ficar ouvindo o arquivo de config
+npx json-server server.json -p 3333 -w
