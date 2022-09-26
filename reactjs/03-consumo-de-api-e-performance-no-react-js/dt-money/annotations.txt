@@ -1,3 +1,6 @@
 // Iniciar o json-server com base em um arquivo passando 
 // a porta e fazendo ficar ouvindo o arquivo de config
 npx json-server server.json -p 3333 -w -d 500
+
+// useCallback, evitar que funcoes ou componentes sejam recriado em memoria sem alterar informacões,
+funciona igual o useEffect, com um array de depencencias.
