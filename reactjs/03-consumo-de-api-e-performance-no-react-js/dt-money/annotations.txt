@@ -4,3 +4,18 @@ npx json-server server.json -p 3333 -w -d 500
 
 // useCallback, evitar que funcoes ou componentes sejam recriado em memoria sem alterar informacões,
 funciona igual o useEffect, com um array de depencencias.
+
+//Por que um componente renderiza?
+// - Hooks changed (mudou estado, contexto, reducer);
+// - Props changed (mudou propriedades);
+// - Parent rerendered (componente pai renderizou);
+
+//Qual é o fluxo de renderização?
+// 1. O React recria o HTML da interface daquele componente.
+// 2. Compara a versão do HTML recriado com a versão anterior.
+// 3. SE mudou alguma coisa, ele reescreve o HTML na tela.
+
+// Com o MEMO:
+// 0. Hooks changed, Props changed (deep comparation).
+// 0.1 Comparar a versão anterior dos hooks e props.
+// 0.2 SE mudou algo, ele vai permitir entrar no fluxo de renderização.
