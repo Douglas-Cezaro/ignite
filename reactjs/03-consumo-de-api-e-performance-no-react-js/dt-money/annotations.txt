@@ -19,3 +19,5 @@ funciona igual o useEffect, com um array de depencencias.
 // 0. Hooks changed, Props changed (deep comparation).
 // 0.1 Comparar a versão anterior dos hooks e props.
 // 0.2 SE mudou algo, ele vai permitir entrar no fluxo de renderização.
+
+// UseMemo, evitar que variaveis sejam recriadas

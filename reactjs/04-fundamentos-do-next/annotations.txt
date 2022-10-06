@@ -1,0 +1,7 @@
+//NEXT JS = SSR
+Server-side render
+
+Temos o front e o backend separados, quando o usuário acessar o frontend ele vai
+acessar um "backend", porém não é um API rest e sim um servidor NODE JS
+
+NEXT JS -> /users => backend API -> JSON -> NEXT JS -> HTML -> FRONT
