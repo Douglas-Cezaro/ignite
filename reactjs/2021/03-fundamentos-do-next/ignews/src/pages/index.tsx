@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import { SubscribeButton } from "../components/SubscribeButton";
 import { stripe } from "../services/stripe";
@@ -36,7 +36,26 @@ export default function Home({ product }: HomeProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// Vai ser executado toda a vez que o usuário acessar a tela
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const price = await stripe.prices.retrieve("price_1LqoemCqXaBE3cpEP46APorX");
+
+//   const product = {
+//     priceId: price.id,
+//     //DICA PARA ARMAZENAR PRECO NO BANCO, ARMAZENAR EM CENTAVOS PARA SEMPRE SER UM NUMERO INTEIRO
+//     amount: new Intl.NumberFormat("en-US", {
+//       style: "currency",
+//       currency: "USD",
+//     }).format(price.unit_amount / 100),
+//   };
+//   return {
+//     props: { product },
+//   };
+// };
+
+// Vai ser executado toda a vez que o usuário acessar a tela, porém só vai executar seu conteúdo depois do tempo
+// de revalidate, ele vai salvar um html estatico e vai mostrar pra todos
+export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve("price_1LqoemCqXaBE3cpEP46APorX");
 
   const product = {
@@ -49,6 +68,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
   return {
     props: { product },
+    revalidate: 60 * 60 * 24, // 24 hours
   };
 };
 
