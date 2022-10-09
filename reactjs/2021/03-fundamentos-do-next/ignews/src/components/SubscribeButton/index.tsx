@@ -31,7 +31,7 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
       });
     } catch (e) {
       console.log(e);
-      alert(e.message);
+      alert("Tente novamente!");
     }
   }
 
