@@ -22,5 +22,5 @@ O **Ig.news** é uma aplicação, desenvolvida no [ignite](https://app.rocketsea
 - [**NextAuth**](https://next-auth.js.org/)
 - [**Stripe SDK**](https://stripe.com/docs/api?lang=node)
 - [**Fauna DB**](https://dashboard.fauna.com/)
-- [**JAMSTACK**](https://jamstack.org/)
+- [**Prismic CMS**](https://prismic.io/)
 
