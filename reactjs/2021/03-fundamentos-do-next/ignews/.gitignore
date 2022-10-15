@@ -35,3 +35,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# Prismic
+
+sm.json
+slices/
+customtypes/
+.slicemachine
