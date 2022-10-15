@@ -7,12 +7,14 @@ export function Header() {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
-        <Image
-          src="/images/logo.svg"
-          alt="ig.news"
-          width="100%"
-          height="100%"
-        />
+        <div className={styles.logo}>
+          <Image
+            width="100%"
+            height="100%"
+            src="/images/logo.svg"
+            alt="ig.news"
+          />
+        </div>
         <nav>
           <ActiveLink href="/" activeClassName={styles.active}>
             <a>Home</a>

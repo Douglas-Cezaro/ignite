@@ -51,10 +51,20 @@
         background: var(--yellow-500);
       }
     }
+
+    @media (max-width: 600px) {
+      margin-left: 0;
+    }
   }
 
   button {
     margin-left: auto;
+  }
+}
+
+.logo {
+  @media (max-width: 600px) {
+    display: none;
   }
 }
 
