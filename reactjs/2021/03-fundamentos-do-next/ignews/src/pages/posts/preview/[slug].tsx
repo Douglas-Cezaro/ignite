@@ -56,13 +56,19 @@ export default function PostPreview({ post }: PostPreviewProps) {
   );
 }
 
+// Gerar paginas durante o build
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [],
     fallback: "blocking",
+    // true, false, blocking
   };
 };
 
+// Ele pode ser gerar as paginas estaticas em dois momentos
+// Durante o build
+// Durante o primeiro acesso (Quando for um recurso que tem muita quantidade de dados)
+// Juntar os dois, metade a metade
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
 
@@ -87,6 +93,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       post,
     },
+    revalidate: 60 * 30, // 30 minutes
   };
 };
 
