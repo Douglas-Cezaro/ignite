@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   if (!session?.activeSubscription) {
     return {
       redirect: {
-        destination: "/",
+        destination: `/posts/preview/${slug}`,
         permanent: false,
       },
     };
@@ -55,25 +55,34 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const prismic = getPrismicClient();
 
-  const response = await prismic.getByUID("publication", String(slug), {});
+  try {
+    const response = await prismic.getByUID("publication", String(slug), {});
 
-  const post = {
-    slug,
-    title: RichText.asText(response.data.title),
-    content: RichText.asHtml(response.data.content),
-    updatedAt: new Date(response.last_publication_date).toLocaleDateString(
-      "pt-BR",
-      {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      }
-    ),
-  };
-  return {
-    props: {
-      post,
-    },
-  };
+    const post = {
+      slug,
+      title: RichText.asText(response.data.title),
+      content: RichText.asHtml(response.data.content),
+      updatedAt: new Date(response.last_publication_date).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }
+      ),
+    };
+    return {
+      props: {
+        post,
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: "/posts",
+        permanent: false,
+      },
+    };
+  }
 };
 
