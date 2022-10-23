@@ -31,44 +31,7 @@ describe("SignInButton component", () => {
           email: "john@email.com",
         },
         expires: "fake-expires",
-        activeSubscription: {
-          ref: {
-            "@ref": {
-              id: "345083198127997520",
-              collection: {
-                "@ref": {
-                  id: "subscriptions",
-                  collection: {
-                    "@ref": {
-                      id: "collections",
-                    },
-                  },
-                },
-              },
-            },
-          },
-          ts: 1665811925110000,
-          data: {
-            id: "sub_1Lr8KHCqXaBE3cpEl3funUkB",
-            userId: {
-              "@ref": {
-                id: "345066162757829199",
-                collection: {
-                  "@ref": {
-                    id: "users",
-                    collection: {
-                      "@ref": {
-                        id: "collections",
-                      },
-                    },
-                  },
-                },
-              },
-            },
-            status: "active",
-            price_id: "price_1LqoemCqXaBE3cpEP46APorX",
-          },
-        },
+        activeSubscription: "fake-active-subscription",
       },
       status: "authenticated",
     });

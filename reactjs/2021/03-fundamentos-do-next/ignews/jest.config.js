@@ -1,4 +1,8 @@
-module.exports = {
+const nextJest = require("next/jest");
+
+const createJestConfig = nextJest({ dir: "./" });
+
+const customJestConfig = {
   testPathIgnorePatterns: [
     "/node_modules/",
     "__tests__",
@@ -15,5 +19,12 @@ module.exports = {
     "\\.(scss|css|sass)": "identity-obj-proxy",
   },
   testEnvironment: "jsdom",
+};
+
+module.exports = async () => {
+  const asyncConfig = createJestConfig(customJestConfig);
+  const config = await asyncConfig();
+  const transformIgnorePatterns = ["node_modules/(?!axios)/"];
+  return { ...config, transformIgnorePatterns };
 };
 
