@@ -19,6 +19,14 @@ const customJestConfig = {
     "\\.(scss|css|sass)": "identity-obj-proxy",
   },
   testEnvironment: "jsdom",
+  collectCoverage: true,
+  collectCoverageFrom: [
+    "src/**/*.tsx",
+    "!src/**/*spec.tsx",
+    "!src/**/_document.tsx",
+    "!src/**/_app.tsx",
+  ],
+  coverageReporters: ["lcov", "json"],
 };
 
 module.exports = async () => {
