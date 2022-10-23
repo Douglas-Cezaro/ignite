@@ -1,14 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { SubscribeButton } from ".";
-
-//Functions to be mocked
-import { useSession } from "next-auth/react";
-jest.mock("next-auth/react");
-
-import { signIn } from "next-auth/react";
-jest.mock("next-auth/react");
-
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+
+jest.mock("next-auth/react");
 jest.mock("next/router", () => ({
   useRouter: jest.fn().mockReturnValue({
     push: jest.fn(),
