@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import Home from "../../pages";
+import { mocked } from "jest-mock";
+import Home, { getStaticProps } from "../../pages";
+import { stripe } from "../../services/stripe";
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn().mockReturnValue({
@@ -16,6 +18,8 @@ jest.mock("next-auth/react", () => {
   };
 });
 
+jest.mock("../../services/stripe");
+
 describe("Home page", () => {
   it("renders correctly", () => {
     render(
@@ -28,6 +32,24 @@ describe("Home page", () => {
     );
 
     expect(screen.getByText(new RegExp("\\$9.99", "i"))).toBeInTheDocument();
+  });
+
+  it("loads initial data", async () => {
+    const retriveStripePricesMocked = mocked(stripe.prices.retrieve);
+
+    retriveStripePricesMocked.mockResolvedValueOnce({
+      id: "fake-price-id",
+      unit_amount: 999,
+    } as any);
+
+    const response = await getStaticProps({});
+
+    expect(response).toEqual(
+      // Verifica se o objeto contém
+      expect.objectContaining({
+        props: { product: { priceId: "fake-price-id", amount: "$9.99" } },
+      })
+    );
   });
 });
 
