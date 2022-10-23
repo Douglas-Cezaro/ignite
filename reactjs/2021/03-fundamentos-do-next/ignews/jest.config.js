@@ -5,7 +5,7 @@ const createJestConfig = nextJest({ dir: "./" });
 const customJestConfig = {
   testPathIgnorePatterns: [
     "/node_modules/",
-    "__tests__",
+    "__tests__/setupTests.ts",
     "/.next/",
     "/slices/",
     "/customtypes/",
