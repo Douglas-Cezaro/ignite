@@ -22,7 +22,7 @@ jest.mock("next-auth/react", () => {
 });
 
 // Categorizar os testes
-describe("ActiveLink component", () => {
+describe("Header component", () => {
   it("renders correctly", () => {
     render(<Header />);
 
