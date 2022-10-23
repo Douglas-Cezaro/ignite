@@ -1,6 +1,7 @@
 module.exports = {
-  testIgnorePatterns: [
+  testPathIgnorePatterns: [
     "/node_modules/",
+    "__tests__",
     "/.next/",
     "/slices/",
     "/customtypes/",
