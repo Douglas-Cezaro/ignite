@@ -1,3 +1,5 @@
+import { metrics } from "./metrics";
+
 export default {
   colors: {
     primary: "#5636D3",
@@ -22,5 +24,6 @@ export default {
     medium: "Poppins_500Medium",
     bold: "Poppins_700Bold",
   } as const,
+  metrics: metrics,
 };
 
