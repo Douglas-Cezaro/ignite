@@ -3,6 +3,7 @@ import { Feather } from "@expo/vector-icons";
 import {
   Container,
   Header,
+  HighlightCards,
   Icon,
   Photo,
   User,
@@ -32,8 +33,11 @@ export function Dashboard() {
           <Icon name="power" />
         </UserWrapper>
       </Header>
-
-      <HighlightCard />
+      <HighlightCards>
+        <HighlightCard />
+        <HighlightCard />
+        <HighlightCard />
+      </HighlightCards>
     </Container>
   );
 }

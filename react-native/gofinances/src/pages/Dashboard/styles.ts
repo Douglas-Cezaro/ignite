@@ -58,3 +58,9 @@ export const Icon = styled(Feather)`
   font-size: ${({ theme }) => theme.metrics.px(24)}px;
 `;
 
+export const HighlightCards = styled.ScrollView.attrs({
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+  paddingHorizontal: 24,
+})``;
+
