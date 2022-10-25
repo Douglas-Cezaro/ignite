@@ -1,7 +1,9 @@
 import React from "react";
+import { Feather } from "@expo/vector-icons";
 import {
   Container,
   Header,
+  Icon,
   Photo,
   User,
   UserGreeting,
@@ -26,6 +28,7 @@ export function Dashboard() {
               <UserName>Douglas</UserName>
             </User>
           </UserInfo>
+          <Icon name="power" />
         </UserWrapper>
       </Header>
     </Container>
