@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
 
 export const Container = styled.View`
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.shape};
 
   width: ${({ theme }) => theme.metrics.px(300)}px;
   border-radius: 5px;
@@ -12,8 +12,6 @@ export const Container = styled.View`
   padding-bottom: ${({ theme }) => theme.metrics.px(42)}px;
 
   margin-right: ${({ theme }) => theme.metrics.px(16)}px;
-
-  height: 300px;
 `;
 
 export const Header = styled.View`
