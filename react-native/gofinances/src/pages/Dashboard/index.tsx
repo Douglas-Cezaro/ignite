@@ -1,11 +1,12 @@
 import React from "react";
-import { Feather } from "@expo/vector-icons";
 import {
   Container,
   Header,
   HighlightCards,
   Icon,
   Photo,
+  Title,
+  Transactions,
   User,
   UserGreeting,
   UserInfo,
@@ -13,6 +14,7 @@ import {
   UserWrapper,
 } from "./styles";
 import { HighlightCard } from "../../components/HighlightCard";
+import { TransactionCard } from "../../components/TransactionCard";
 
 export function Dashboard() {
   return (
@@ -53,6 +55,11 @@ export function Dashboard() {
           lastTransaction="01 à 16 de abril"
         />
       </HighlightCards>
+
+      <Transactions>
+        <Title>Listagem</Title>
+        <TransactionCard />
+      </Transactions>
     </Container>
   );
 }

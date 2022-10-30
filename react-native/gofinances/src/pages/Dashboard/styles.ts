@@ -72,3 +72,16 @@ export const HighlightCards = styled.ScrollView.attrs({
   margin-top: ${({ theme }) => theme.metrics.px(135)}px;
 `;
 
+export const Transactions = styled.View`
+  flex: 1;
+  padding: 0 ${({ theme }) => theme.metrics.px(24)}px;
+
+  margin-top: ${({ theme }) => theme.metrics.px(85)}px;
+`;
+
+export const Title = styled.Text`
+  font-size: ${({ theme }) => theme.metrics.px(18)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  margin-bottom: ${({ theme }) => theme.metrics.px(16)}px;
+`;
+
