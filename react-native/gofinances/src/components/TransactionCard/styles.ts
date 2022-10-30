@@ -7,6 +7,8 @@ export const Container = styled.View`
 
   padding: ${({ theme }) => theme.metrics.px(17)}px
     ${({ theme }) => theme.metrics.px(24)}px;
+
+  margin-bottom: ${({ theme }) => theme.metrics.px(16)}px;
 `;
 
 export const Title = styled.Text`

@@ -85,3 +85,4 @@ export const Title = styled.Text`
   margin-bottom: ${({ theme }) => theme.metrics.px(16)}px;
 `;
 
+export const TransactionList = styled.FlatList``;
