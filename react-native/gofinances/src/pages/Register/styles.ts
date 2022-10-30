@@ -23,7 +23,10 @@ export const Title = styled.Text`
 
 export const Form = styled.View`
   flex: 1;
+  justify-content: space-between;
   width: 100%;
   padding: ${({ theme }) => theme.metrics.px(24)}px;
 `;
+
+export const Fields = styled.View``;
 
