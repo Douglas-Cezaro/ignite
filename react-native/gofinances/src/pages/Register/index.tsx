@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Modal } from "react-native";
 import { Button } from "../../components/Forms/Button";
-import { CategorySelect } from "../../components/Forms/CategorySelect";
+import { CategorySelectButton } from "../../components/Forms/CategorySelectButton";
 import { Input } from "../../components/Forms/Input";
 import { TransactionTypeButton } from "../../components/Forms/TransactionTypeButton";
+import { CategorySelect } from "../CategorySelect";
+
 import {
   Container,
   Fields,
@@ -42,10 +45,13 @@ export function Register() {
               onPress={() => handleTransactionTypeSelect("down")}
             />
           </TransactionTypes>
-          <CategorySelect title="Categoria" />
+          <CategorySelectButton title="Categoria" />
         </Fields>
         <Button title="Enviar" />
       </Form>
+      <Modal>
+        <CategorySelect />
+      </Modal>
     </Container>
   );
 }

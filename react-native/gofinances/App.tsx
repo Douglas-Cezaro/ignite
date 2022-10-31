@@ -1,15 +1,14 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
+import * as SplashScreen from "expo-splash-screen";
 import { ThemeProvider } from "styled-components";
 import theme from "./src/global/styles/theme";
-import { Register } from "./src/pages/Register";
-
 import {
   useFonts,
   Poppins_400Regular,
   Poppins_500Medium,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
-import * as SplashScreen from "expo-splash-screen";
+import { Register } from "./src/pages/Register";
 
 SplashScreen.preventAutoHideAsync();
 
