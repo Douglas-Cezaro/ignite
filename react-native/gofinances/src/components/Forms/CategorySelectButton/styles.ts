@@ -17,7 +17,7 @@ export const Container = styled.TouchableOpacity.attrs({
 export const Category = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${({ theme }) => theme.metrics.px(14)}px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.title};
 `;
 
 export const Icon = styled(Feather)`
