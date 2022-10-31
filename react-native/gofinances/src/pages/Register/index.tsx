@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../../components/Forms/Button";
+import { CategorySelect } from "../../components/Forms/CategorySelect";
 import { Input } from "../../components/Forms/Input";
 import { TransactionTypeButton } from "../../components/Forms/TransactionTypeButton";
 import {
@@ -41,6 +42,7 @@ export function Register() {
               onPress={() => handleTransactionTypeSelect("down")}
             />
           </TransactionTypes>
+          <CategorySelect title="Categoria" />
         </Fields>
         <Button title="Enviar" />
       </Form>
