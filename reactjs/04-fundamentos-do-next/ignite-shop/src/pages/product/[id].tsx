@@ -3,12 +3,15 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Stripe from "stripe";
 import { shimmer, toBase64 } from "../../components/Shimmer";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { stripe } from "../../lib/stripe";
 import {
   ImageContainer,
   ProductContainer,
   ProductDetails,
 } from "../styles/pages/product";
+
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface ProductProps {
   product: {
@@ -21,6 +24,30 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
+  const { isFallback } = useRouter();
+
+  if (isFallback) {
+    let loadingImage = atob(toBase64(shimmer(550, 480)));
+
+    return (
+      <ProductContainer>
+        <ImageContainer
+          dangerouslySetInnerHTML={{
+            __html: loadingImage,
+          }}
+        />
+        <ProductDetails>
+          <SkeletonTheme baseColor="#202024" highlightColor="#121214">
+            <Skeleton />
+            <Skeleton height={50} />
+            <Skeleton height={400} />
+            <Skeleton height={50} />
+          </SkeletonTheme>
+        </ProductDetails>
+      </ProductContainer>
+    );
+  }
+
   return (
     <ProductContainer>
       <ImageContainer>
@@ -48,9 +75,10 @@ export default function Product({ product }: ProductProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  // Buscar os produtos mais vendidos / mais acessados
   return {
-    paths: [{ params: { id: "prod_Mn3cR6WcTikLQD" } }],
-    fallback: false,
+    paths: [],
+    fallback: true,
   };
 };
 
