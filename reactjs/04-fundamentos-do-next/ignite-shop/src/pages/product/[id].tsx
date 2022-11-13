@@ -1,3 +1,4 @@
+import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -12,6 +13,7 @@ import {
 } from "../styles/pages/product";
 
 import "react-loading-skeleton/dist/skeleton.css";
+import { useState } from "react";
 
 interface ProductProps {
   product: {
@@ -25,6 +27,8 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false);
   const { isFallback } = useRouter();
 
   if (isFallback) {
@@ -49,8 +53,22 @@ export default function Product({ product }: ProductProps) {
     );
   }
 
-  function handleBuyButton() {
-    console.log(product.defaultPriceId);
+  async function handleBuyButton() {
+    try {
+      setIsCreatingCheckoutSession(true);
+
+      const response = await axios.post("/api/checkout", {
+        priceId: product.defaultPriceId,
+      });
+
+      const { checkoutUrl } = response.data;
+
+      window.location.href = checkoutUrl;
+    } catch (err) {
+      setIsCreatingCheckoutSession(false);
+
+      alert("Falha ao redirecionar ao checkout!");
+    }
   }
 
   return (
