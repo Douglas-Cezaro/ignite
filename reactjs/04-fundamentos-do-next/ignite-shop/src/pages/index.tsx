@@ -10,6 +10,7 @@ import Stripe from "stripe";
 import { shimmer, toBase64 } from "../components/Shimmer";
 
 import "keen-slider/keen-slider.min.css";
+import Link from "next/link";
 interface HomeProps {
   products: {
     id: string;
@@ -30,22 +31,24 @@ export default function Home({ products }: HomeProps) {
   return (
     <HomeContainer ref={sliderRef} className="keen-slider">
       {products.map((product) => (
-        <Product key={product.id} className="keen-slider__slide">
-          <Image
-            placeholder="blur"
-            src={product.imageUrl}
-            width={520}
-            height={480}
-            alt=""
-            blurDataURL={`data:image/svg+xml;base64,${toBase64(
-              shimmer(520, 480)
-            )}`}
-          />
-          <footer>
-            <strong>{product.name}</strong>
-            <span>{product.price}</span>
-          </footer>
-        </Product>
+        <Link href={`/product/${product.id}`} key={product.id}>
+          <Product className="keen-slider__slide">
+            <Image
+              placeholder="blur"
+              src={product.imageUrl}
+              width={520}
+              height={480}
+              alt=""
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                shimmer(520, 480)
+              )}`}
+            />
+            <footer>
+              <strong>{product.name}</strong>
+              <span>{product.price}</span>
+            </footer>
+          </Product>
+        </Link>
       ))}
     </HomeContainer>
   );
