@@ -1,0 +1,10 @@
+- TSUP
+  Agrupe sua biblioteca TypeScript sem configuração, com tecnologia esbuild .
+  Converter codigo para varias linguagens e versões. Ele é mais
+  performático.
+  Qualquer coisa que seja compatível com Node.js nativamente, ou seja .js, , .json, .mjs. E TypeScript .ts, .tsx
+
+- Monorepo
+  Colocar varios projetos em um mesmo repositorio (uma mesma pasta).
+  um mesmo espaço de trabalho.
+  Utilizar quando os projetos são dependentes entre si.
