@@ -56,7 +56,6 @@ export default function Product({ product }: ProductProps) {
   async function handleBuyButton() {
     try {
       setIsCreatingCheckoutSession(true);
-      console.log(product.defaultPriceId);
       const response = await axios.post("/api/checkout", {
         priceId: product.defaultPriceId,
       });
