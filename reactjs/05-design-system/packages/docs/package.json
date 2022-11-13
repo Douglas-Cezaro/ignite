@@ -17,11 +17,15 @@
     "vite": "^3.2.3"
   },
   "dependencies": {
+    "@czr-ui/react": "*",
+    "@czr-ui/tokens": "*",
+    "@czr-ui/eslint-config": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "scripts": {
     "dev": "start-storybook -p 6006",
-    "build": "build-storybook"
+    "build": "build-storybook",
+    "lint": "eslint src/**/*.ts* --fix"
   }
 }
