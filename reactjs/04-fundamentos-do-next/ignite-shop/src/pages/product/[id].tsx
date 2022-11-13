@@ -14,6 +14,7 @@ import {
 
 import "react-loading-skeleton/dist/skeleton.css";
 import { useState } from "react";
+import Head from "next/head";
 
 interface ProductProps {
   product: {
@@ -71,30 +72,38 @@ export default function Product({ product }: ProductProps) {
   }
 
   return (
-    <ProductContainer>
-      <ImageContainer>
-        <Image
-          placeholder="blur"
-          src={product.imageUrl}
-          width={520}
-          height={480}
-          alt=""
-          blurDataURL={`data:image/svg+xml;base64,${toBase64(
-            shimmer(520, 480)
-          )}`}
-        />
-      </ImageContainer>
-      <ProductDetails>
-        <h1>{product.name}</h1>
-        <span>{product.price}</span>
+    <>
+      <Head>
+        <title>{product.name} | Ignite Shop</title>
+      </Head>
+      <ProductContainer>
+        <ImageContainer>
+          <Image
+            placeholder="blur"
+            src={product.imageUrl}
+            width={520}
+            height={480}
+            alt=""
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(
+              shimmer(520, 480)
+            )}`}
+          />
+        </ImageContainer>
+        <ProductDetails>
+          <h1>{product.name}</h1>
+          <span>{product.price}</span>
 
-        <p>{product.description}</p>
+          <p>{product.description}</p>
 
-        <button disabled={isCreatingCheckoutSession} onClick={handleBuyButton}>
-          Comprar agora
-        </button>
-      </ProductDetails>
-    </ProductContainer>
+          <button
+            disabled={isCreatingCheckoutSession}
+            onClick={handleBuyButton}
+          >
+            Comprar agora
+          </button>
+        </ProductDetails>
+      </ProductContainer>
+    </>
   );
 }
 
