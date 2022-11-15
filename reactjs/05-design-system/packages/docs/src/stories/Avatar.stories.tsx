@@ -8,6 +8,13 @@ export default {
     src: 'https://avatars.githubusercontent.com/u/53586466?v=4',
     alt: 'Douglas Cezaro',
   },
+  argTypes: {
+    src: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
 } as Meta<AvatarProps>
 
 export const Primary: StoryObj<AvatarProps> = {}
