@@ -27,6 +27,7 @@
     "@radix-ui/react-avatar": "^1.0.1",
     "@radix-ui/react-checkbox": "^1.0.1",
     "@stitches/react": "^1.2.8",
+    "@storybook/addon-a11y": "^6.5.13",
     "phosphor-react": "^1.4.1"
   }
 }
