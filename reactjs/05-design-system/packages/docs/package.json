@@ -21,6 +21,7 @@
     "@czr-ui/react": "*",
     "@czr-ui/tokens": "*",
     "@czr-ui/ts-config": "*",
+    "@storybook/storybook-deployer": "^2.8.16",
     "phosphor-react": "^1.4.1",
     "polished": "^4.2.2",
     "react": "^18.2.0",
@@ -29,6 +30,7 @@
   "scripts": {
     "dev": "start-storybook -p 6006",
     "build": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages",
     "lint": "eslint src/**/*.ts* --fix"
   }
 }
