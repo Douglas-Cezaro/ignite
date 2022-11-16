@@ -24,7 +24,7 @@ jobs:
 
       - run: npm run build
         env: 
-          TURBO_TOKEN: f6MPD3ndxND3392ODwRJodew
+          TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           TURBO_TEAM: douglas-cezaro
         working-directory: ./reactjs/05-design-system
 
