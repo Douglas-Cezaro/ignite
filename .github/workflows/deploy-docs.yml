@@ -21,6 +21,9 @@ jobs:
         working-directory: ./reactjs/05-design-system
 
       - run: npm run build
+        env: 
+          TURBO_TOKEN: f6MPD3ndxND3392ODwRJodew
+          TURBO_TEAM: douglas-cezaro
         working-directory: ./reactjs/05-design-system
 
       - name: Deploy storybook
