@@ -11,3 +11,5 @@
 
 - Turbo Repo
   Executar scripts em todos os pacotes ao mesmo tempo.
+
+  https://turbo.build/repo/docs/handbook/publishing-packages/versioning-and-publishing
