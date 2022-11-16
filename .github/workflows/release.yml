@@ -23,6 +23,7 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
 
       - run: npm ci
+        working-directory: ./reactjs/05-design-system
 
       - name: Publish to NPM
         id: changesets
