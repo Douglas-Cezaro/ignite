@@ -20,6 +20,10 @@ import {
   IntervalsContainer,
 } from './styles'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { convertTimeStringToMinutes } from '../../../utils/convert-time-string-to-minutes'
+
+//! TODO Quando for trabalhar com preço, converter pra centavos para salvar em banco.
+//! TODO Quando for trabalhar só com o horário, converter para minutos que fica mais fácil de comparar.
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
@@ -34,11 +38,35 @@ const timeIntervalsFormSchema = z.object({
     .length(7)
     .transform((intervals) => intervals.filter((interval) => interval.enabled))
     .refine((intervals) => intervals.length > 0, {
-      message: 'Você precisa selecionar pelo menos um dia da semana!',
-    }),
+      message: 'Você precisa selecionar pelo menos um dia da semana.',
+    })
+    .transform((intervals) => {
+      return intervals.map((interval) => {
+        return {
+          weekday: interval.weekDay,
+          startTimeInMinutes: convertTimeStringToMinutes(interval.startTime),
+          endTimeInMinutes: convertTimeStringToMinutes(interval.endTime),
+        }
+      })
+    })
+    .refine(
+      (intervals) => {
+        // Valida se todos os itens atendem a condição
+        return intervals.every(
+          (interval) =>
+            interval.endTimeInMinutes - 60 >= interval.startTimeInMinutes,
+        )
+      },
+      {
+        message:
+          'O horário de término deve ser pelo menos 1h distante do horário de início.',
+      },
+    ),
 })
 
-type TimeIntervalsFormData = z.infer<typeof timeIntervalsFormSchema>
+type TimeIntervalsFormInput = z.input<typeof timeIntervalsFormSchema>
+
+type TimeIntervalsFormOutput = z.output<typeof timeIntervalsFormSchema>
 
 export default function TimeIntervals() {
   const {
@@ -47,7 +75,7 @@ export default function TimeIntervals() {
     control,
     watch,
     formState: { isSubmitting, errors },
-  } = useForm({
+  } = useForm<TimeIntervalsFormInput, any, TimeIntervalsFormOutput>({
     resolver: zodResolver(timeIntervalsFormSchema),
     defaultValues: {
       intervals: [
@@ -106,7 +134,7 @@ export default function TimeIntervals() {
 
   const intervals = watch('intervals')
 
-  async function handleSetTimeIntervals(data: TimeIntervalsFormData) {
+  async function handleSetTimeIntervals(data: TimeIntervalsFormOutput) {
     console.log(data)
   }
 
