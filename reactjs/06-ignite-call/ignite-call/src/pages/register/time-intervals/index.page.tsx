@@ -21,6 +21,7 @@ import {
 } from './styles'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { convertTimeStringToMinutes } from '../../../utils/convert-time-string-to-minutes'
+import { api } from '../../../lib/axios'
 
 //! TODO Quando for trabalhar com preço, converter pra centavos para salvar em banco.
 //! TODO Quando for trabalhar só com o horário, converter para minutos que fica mais fácil de comparar.
@@ -135,7 +136,10 @@ export default function TimeIntervals() {
   const intervals = watch('intervals')
 
   async function handleSetTimeIntervals(data: TimeIntervalsFormOutput) {
-    console.log(data)
+    const { intervals } = data
+    await api.post('/users/time-intervals', {
+      intervals,
+    })
   }
 
   return (
