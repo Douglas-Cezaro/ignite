@@ -46,7 +46,27 @@ export function Calendar() {
               <Calendarday>2</Calendarday>
             </td>
             <td>
-              <Calendarday>3</Calendarday>
+              <Calendarday disabled={true}>3</Calendarday>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Calendarday>1</Calendarday>
+            </td>
+            <td>
+              <Calendarday>1</Calendarday>
+            </td>
+            <td>
+              <Calendarday>1</Calendarday>
+            </td>
+            <td>
+              <Calendarday>1</Calendarday>
+            </td>
+            <td>
+              <Calendarday>2</Calendarday>
+            </td>
+            <td>
+              <Calendarday disabled={true}>3</Calendarday>
             </td>
           </tr>
         </tbody>
