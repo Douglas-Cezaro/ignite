@@ -41,7 +41,7 @@ export const CalendarActions = styled('div', {
       color: '$gray100',
     },
     '&:focus': {
-      boxShadow: '0 0 0 2px $colors$gray',
+      boxShadow: '0 0 0 2px $colors$gray100',
     },
   },
 })
@@ -91,6 +91,6 @@ export const Calendarday = styled('button', {
   },
 
   '&:focus': {
-    boxShadow: '0 0 0 2px $colors$gray',
+    boxShadow: '0 0 0 2px $colors$gray100',
   },
 })
