@@ -71,9 +71,11 @@ export default async function handler(
 
   const availabilityTime = possibleTimes.filter((time) => {
     // Retorna se pelo menos um item atende a condição passada
-    return !blockedTimes.some(
+    const isTimeBlocked = blockedTimes.some(
       (blockedTime) => blockedTime.date.getHours() === time,
     )
+    const isTimeInPast = referenceDate.set('hour', time).isBefore(new Date())
+    return !isTimeBlocked && !isTimeInPast
   })
 
   return res.json({ possibleTimes, availabilityTime })
