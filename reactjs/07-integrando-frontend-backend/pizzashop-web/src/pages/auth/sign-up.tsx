@@ -97,7 +97,6 @@ export function SignUp() {
               <a className="underline underline-offset-4" href="">
                 políticas de privacidade
               </a>
-              .
             </p>
           </form>
         </div>
