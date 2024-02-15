@@ -18,7 +18,7 @@ export function Header() {
           </NavLink>
           <NavLink to="/orders">
             <UtensilsCrossed className="h-4 w-4" />
-            Início
+            Pedido
           </NavLink>
         </nav>
         <div className="item-center ml-auto flex gap-2">
